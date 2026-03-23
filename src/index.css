@@ -1,0 +1,33 @@
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Space for fixed bottom pill nav + safe area */
+  scroll-padding-bottom: 6.5rem;
+}
+
+.bottom-pill-nav-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  /* New dark purple background from palette */
+  background: #242038;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  padding-bottom: 6.5rem;
+}

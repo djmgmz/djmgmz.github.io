@@ -1,0 +1,17 @@
+@keyframes cursor-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.cursor-follower__glow {
+  animation: cursor-spin 2.8s linear infinite;
+  filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.55))
+    drop-shadow(0 0 14px rgba(168, 85, 247, 0.35));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor-follower__glow {
+    animation: none;
+  }
+}
