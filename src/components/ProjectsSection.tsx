@@ -177,7 +177,7 @@ function ProjectCard({ project, index, onViewPhotos }: { project: typeof project
           style={{
             flex: 1.4,
             position: 'relative',
-            minHeight: { base: '300px', md: 'auto' } as const,
+            minHeight: '300px',
           }}
         >
           <Box
@@ -260,7 +260,6 @@ export function ProjectsSection() {
       gestureOrientation: 'vertical',
       smoothWheel: true,
       wheelMultiplier: 1,
-      smoothTouch: false,
       touchMultiplier: 2,
     })
 

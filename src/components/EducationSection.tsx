@@ -31,21 +31,6 @@ const educationData: EducationItem[] = [
   },
 ]
 
-const lineVariants = {
-  hidden: {
-    scaleY: 0,
-    originY: 0,
-  },
-  visible: {
-    scaleY: 1,
-    transition: {
-      duration: 1.2,
-      ease: 'easeInOut' as const,
-      delay: 0.2,
-    },
-  },
-}
-
 /**
  * Education timeline section with left-aligned title and left-side timeline line.
  * Transitions from the orange AboutMe section with a gradient fade.
