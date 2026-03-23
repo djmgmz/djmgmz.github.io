@@ -6,9 +6,9 @@ const hobbies = [
   { name: "Gaming", icon: "🎮" },
   { name: "Films", icon: "🎬" },
   { name: "Anime", icon: "🍥" },
-  { name: "Teamfight Tactics", image: "/src/assets/teamfighttactics.svg" },
+  { name: "Teamfight Tactics", image: "/assets/teamfighttactics.svg" },
   { name: "Japanese Culture", icon: "🇯🇵" },
-  { name: "New Jeans", image: "/src/assets/newjeansbunny.png" },
+  { name: "New Jeans", image: "/assets/newjeansbunny.png" },
 ];
 
 const BUBBLE_RADIUS = 30;

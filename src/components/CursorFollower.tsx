@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 import './CursorFollower.css'
-import poro from '../assets/poro.png'
+const poroImage = '/assets/poro.png'
 
 type CursorFollowerProps = {
   active?: boolean
@@ -92,7 +92,7 @@ export function CursorFollower({ active = true }: CursorFollowerProps) {
       }}
     >
       <div className="cursor-follower__glow">
-        <img src={poro} alt="Poro cursor" width={32} height={32} />
+        <img style={{ backgroundImage: `url(${poroImage})` }} alt="Poro cursor" width={32} height={32} />
       </div>
     </div>
   )
