@@ -92,7 +92,7 @@ export function CursorFollower({ active = true }: CursorFollowerProps) {
       }}
     >
       <div className="cursor-follower__glow">
-        <img style={{ backgroundImage: `url(${poroImage})` }} alt="Poro cursor" width={32} height={32} />
+        <img src={poroImage} alt="Poro cursor" width={32} height={32} />
       </div>
     </div>
   )
