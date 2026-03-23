@@ -9,6 +9,7 @@ import {
 } from '@mantine/core'
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
+import cv from '../assets/GOMEZ,DominicJoel_CV.pdf'
 import { palette } from '../theme'
 
 /** Transparent background to show Vanta effect */
@@ -113,7 +114,7 @@ export function HeroSection() {
           <Group gap="md" mt="xl">
             <Button
               component="a"
-              href="/src/assets/GOMEZ,DominicJoel_CV.pdf"
+              href={cv}
               download
               size="md"
               radius="sm"

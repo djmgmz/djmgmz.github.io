@@ -6,24 +6,29 @@ import HobbyBubbles from './HobbyBubbles'
 /** Transparent background to show Vanta effect */
 const aboutMeBackground = 'transparent'
 
+import profilePhoto from '../assets/profilephoto.jpg'
+import playlist1 from '../assets/playlist1.png'
+import playlist2 from '../assets/playlist2.png'
+import playlist3 from '../assets/playlist3.png'
+
 const playlists = [
   {
     id: '1927SoVPi9COBAl9rOIXFr',
     name: 'island',
     spotifyUrl: 'https://open.spotify.com/playlist/1927SoVPi9COBAl9rOIXFr',
-    image: '/src/assets/playlist1.png',
+    image: playlist1,
   },
   {
     id: '0FrTnk8JKVKjpfnObDW2sc',
     name: 'time stood still',
     spotifyUrl: 'https://open.spotify.com/playlist/0FrTnk8JKVKjpfnObDW2sc',
-    image: '/src/assets/playlist2.png',
+    image: playlist2,
   },
   {
     id: '5MW6CjgQdAkxHcDMXc5abS',
     name: 'powerup',
     spotifyUrl: 'https://open.spotify.com/playlist/5MW6CjgQdAkxHcDMXc5abS',
-    image: '/src/assets/playlist3.png',
+    image: playlist3,
   },
 ]
 
@@ -130,7 +135,7 @@ export function AboutMeSection() {
               }}
             >
               <img
-                src="/src/assets/profilephoto.jpg"
+                src={profilePhoto}
                 alt="Dominic Joel M. Gomez"
                 style={{
                   width: '100%',

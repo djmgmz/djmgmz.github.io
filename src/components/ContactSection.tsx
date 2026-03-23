@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Anchor, Box, Button, Container, Flex, SimpleGrid, Stack, Text, Textarea, TextInput, Title } from '@mantine/core'
+import linkedinIcon from '../assets/linkedin-svgrepo-com.svg'
+import githubIcon from '../assets/github-svgrepo-com.svg'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
@@ -175,7 +177,7 @@ export function ContactSection() {
                   }}
                 >
                   <img
-                    src="/src/assets/linkedin-svgrepo-com.svg"
+                    src={linkedinIcon}
                     alt="LinkedIn"
                     style={{ width: '24px', height: '24px', filter: 'brightness(0) invert(1)' }}
                   />
@@ -202,7 +204,7 @@ export function ContactSection() {
                   }}
                 >
                   <img
-                    src="/src/assets/github-svgrepo-com.svg"
+                    src={githubIcon}
                     alt="GitHub"
                     style={{ width: '24px', height: '24px', filter: 'brightness(0) invert(1)' }}
                   />
