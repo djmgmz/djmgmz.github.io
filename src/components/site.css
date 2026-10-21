@@ -1,0 +1,1502 @@
+/* --- Nav: the wallet's flap, tab caps along a navy strip ------------------- */
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  height: var(--nav-height);
+  padding: 0 var(--gutter);
+  background: var(--navy);
+  border-bottom: 1px solid var(--navy-line);
+  color: var(--on-navy);
+}
+
+.nav-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  flex: none;
+  font-size: 17px;
+  text-decoration: none;
+}
+
+.nav nav {
+  align-self: flex-end;
+  min-width: 0;
+  margin-left: auto;
+}
+
+.nav-tabs {
+  display: flex;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.nav-tab {
+  display: block;
+  padding: 8px 20px 7px;
+  background: var(--navy-raised);
+  clip-path: polygon(9px 0, calc(100% - 9px) 0, 100% 100%, 0 100%);
+  color: var(--on-navy-muted);
+  font-size: 13.5px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 160ms var(--ease-out), color 160ms var(--ease-out);
+}
+
+.nav-tab:hover {
+  background: var(--navy-line);
+  color: var(--on-navy);
+}
+
+.nav-tab[aria-current='location'] {
+  background: var(--red);
+  color: #fff;
+}
+
+/* --- Wallet ground --------------------------------------------------------- */
+
+.wallet {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(28px, 4vw, 56px);
+  padding: clamp(16px, 2.4vw, 32px) var(--gutter) 0;
+  /* The contact arch is wider than the page; clip keeps it from adding a sideways scroll. */
+  overflow-x: clip;
+}
+
+/* --- Front: one passenger coupon, name and credentials only ---------------- */
+
+.front {
+  display: flex;
+  min-height: calc(100svh - var(--nav-height) - clamp(16px, 2.4vw, 32px) * 2);
+}
+
+.passenger {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.coupon-locator {
+  color: var(--muted);
+  font-size: 12.5px;
+}
+
+.coupon-locator .carbon {
+  letter-spacing: 0.06em;
+}
+
+/* Main body and tear-off stub, split by a vertical perforation. */
+.passenger-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) auto minmax(280px, 1fr);
+  flex: 1;
+}
+
+.passenger-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(24px, 3.4vh, 40px);
+  min-width: 0;
+  padding: clamp(24px, 3.6vw, 64px);
+}
+
+.passenger-id {
+  --name-size: clamp(64px, 9.4vw, 152px);
+  display: flex;
+  align-items: flex-end;
+  gap: clamp(16px, 2vw, 32px);
+}
+
+/* Spans the name's ink, from the cap top of the first line to the baseline of the second.
+   Archivo at 62% width and 0.88 line height puts the cap top 0.084em below the line box and
+   the last baseline 0.108em above its bottom. */
+.passport {
+  flex: none;
+  width: auto;
+  height: calc(var(--name-size) * 1.568);
+  margin-bottom: calc(var(--name-size) * 0.108);
+  aspect-ratio: 132 / 164;
+  object-fit: cover;
+  object-position: 50% 42%;
+  border: 2px solid var(--ink);
+  border-radius: 4px;
+  filter: saturate(0.85) contrast(1.05);
+}
+
+.passenger-name {
+  display: flex;
+  flex-direction: column;
+  color: var(--ink);
+  font-size: var(--name-size);
+}
+
+.passenger-intro {
+  max-width: 44ch;
+  font-size: clamp(18px, 1.5vw, 22px);
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* The stub stacks the credentials as full-width fare boxes that share the coupon's height. */
+.passenger-stub {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-auto-rows: 1fr;
+  margin: clamp(24px, 3.6vw, 64px) clamp(24px, 3vw, 48px);
+}
+
+.passenger-stub .fare-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 14px 18px;
+}
+
+.passenger-stub .fare-box dd {
+  font-size: clamp(22px, 1.9vw, 30px);
+  line-height: 1.15;
+}
+
+/* --- Projects: a heading on the wallet ground over both boarding passes ----- */
+
+.projects {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(28px, 4vw, 56px);
+}
+
+.projects-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px 40px;
+  flex-wrap: wrap;
+  padding-top: clamp(8px, 2vw, 24px);
+  border-bottom: 2px solid var(--navy-line);
+  padding-bottom: 18px;
+}
+
+.projects-title {
+  color: var(--on-navy);
+  font-size: clamp(64px, 8vw, 128px);
+}
+
+.projects-lede {
+  max-width: 46ch;
+  color: var(--on-navy-muted);
+  font-size: clamp(16px, 1.3vw, 19px);
+}
+
+/* --- Leg: a full boarding pass, stub plus the app's screen ------------------ */
+
+.pass {
+  display: grid;
+  grid-template-columns: minmax(300px, 360px) minmax(0, 1fr);
+  /* The whole pass fits one viewport so the app's own scroll areas stay fully on screen. */
+  height: clamp(640px, calc(100svh - var(--nav-height) - 32px), 860px);
+}
+
+.pass-stub {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  border-right: 2px dashed var(--rule);
+}
+
+/* Punched notches where the stub tears from the pass. */
+.pass-stub::before,
+.pass-stub::after {
+  content: '';
+  position: absolute;
+  right: -11px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--navy);
+}
+
+.pass-stub::before {
+  top: -10px;
+}
+
+.pass-stub::after {
+  bottom: -10px;
+}
+
+.pass-stub .coupon-tab {
+  border-radius: 0;
+}
+
+.pass-stub-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--rule) transparent;
+  padding: 22px clamp(18px, 1.8vw, 26px) 24px;
+}
+
+.pass-title {
+  font-size: clamp(52px, 4.2vw, 70px);
+}
+
+.pass-summary {
+  margin-top: 12px;
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.pass-detail {
+  margin-top: 10px;
+  font-size: 14.5px;
+  color: var(--muted);
+}
+
+.pass-label {
+  margin-top: 20px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--ink);
+  font-size: 12px;
+}
+
+.stages {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.stage {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--rule);
+  font-size: 14.5px;
+  transition: color 200ms var(--ease-out), background-color 200ms var(--ease-out);
+}
+
+.stage-num {
+  flex: none;
+  font-size: 12px;
+}
+
+.stage[data-state='active'] {
+  margin: 0 -8px;
+  padding-inline: 8px;
+  background: var(--red);
+  color: #fff;
+}
+
+.stage[data-state='active'] .stage-num {
+  color: #fff;
+}
+
+.stage[data-state='done'] {
+  color: var(--muted);
+}
+
+.pass-recording {
+  margin-top: 12px;
+  font-family: var(--font-carbon);
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--carbon);
+}
+
+.pass-stack {
+  margin-top: 8px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.pass-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px clamp(18px, 1.8vw, 26px);
+  border-top: 1px solid var(--rule);
+}
+
+.pass-stamp {
+  flex: none;
+  padding: 4px 6px 4px 0;
+  text-align: right;
+}
+
+/* Small enough to sit beside the source button inside the stub, rotation included. */
+.pass-stamp .stamp {
+  padding: 3px 10px 1px;
+  border-width: 2px;
+  font-size: 15px;
+  letter-spacing: 0.1em;
+}
+
+.pass-screen {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+}
+
+.pass-screen-band {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 52px;
+  margin: 0;
+  padding: 0 18px;
+  border-bottom: 2px solid var(--ink);
+  font-size: 13px;
+}
+
+.pass-screen-tag {
+  padding: 3px 10px 2px;
+  border: 1.5px solid var(--carbon);
+  border-radius: 4px;
+  color: var(--carbon);
+  font-size: 12px;
+}
+
+.pass-screen-frame {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  border-radius: 0 0 var(--radius) 0;
+  overflow: hidden;
+}
+
+.demo-loading {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* --- Education ---------------------------------------------------------------- */
+
+.education .coupon-title {
+  margin: 0;
+}
+
+/* Programs sit side by side on wide screens, split by a tear line. */
+@media (min-width: 1181px) {
+  .itinerary {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: clamp(24px, 3vw, 48px);
+  }
+
+  .itinerary-leg + .itinerary-leg {
+    border-top: 0;
+    border-left: 2px dashed var(--rule);
+    padding-left: clamp(24px, 3vw, 48px);
+  }
+}
+
+.itinerary {
+  margin: 0;
+  padding: 0 clamp(16px, 2vw, 28px);
+  list-style: none;
+}
+
+.itinerary-leg {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 18px;
+  padding: 22px 0;
+}
+
+.itinerary-leg + .itinerary-leg {
+  border-top: 2px dashed var(--rule);
+}
+
+.itinerary-num {
+  font-size: 15px;
+  padding-top: 3px;
+}
+
+.itinerary-from {
+  font-size: 13px;
+  font-stretch: 72%;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.itinerary-to {
+  margin-top: 4px;
+  font-size: clamp(34px, 3.2vw, 48px);
+}
+
+.itinerary-note {
+  margin-top: 8px;
+  font-size: 15px;
+  color: var(--muted);
+}
+
+.itinerary-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  text-align: right;
+}
+
+.itinerary-meta .carbon {
+  font-size: 14px;
+}
+
+.leg-status {
+  padding: 3px 9px 2px;
+  border: 1.5px solid var(--ink);
+  border-radius: 4px;
+  font-size: 11.5px;
+  white-space: nowrap;
+}
+
+.leg-status[data-live] {
+  border-color: var(--red);
+  background: var(--red);
+  color: #fff;
+}
+
+
+/* --- Baggage claim: technical skills on two belts ---------------------------------- */
+
+.claim {
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 1px 3px oklch(15% 0.04 265 / 0.45), 0 18px 40px -18px oklch(10% 0.05 265 / 0.7);
+}
+
+/* The overhead claim sign. */
+.claim-sign {
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 1.6vw, 22px);
+  flex-wrap: wrap;
+  padding: 14px clamp(16px, 2vw, 28px);
+  background: var(--navy-raised);
+  border-bottom: 3px solid var(--red);
+  color: var(--on-navy);
+}
+
+.claim-sign .coupon-num {
+  min-width: 48px;
+  min-height: 48px;
+  border-radius: 6px;
+  background: var(--red);
+}
+
+.claim-pictogram {
+  flex: none;
+  color: var(--on-navy);
+}
+
+.claim-title {
+  font-size: clamp(36px, 4vw, 60px);
+}
+
+.claim-count {
+  margin-left: auto;
+  color: var(--carbon-copy);
+  font-size: 14px;
+}
+
+.claim-pause {
+  min-height: 36px;
+  padding: 0 14px;
+  border: 1.5px solid var(--on-navy-muted);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--on-navy);
+  font-size: 12.5px;
+  transition: background-color 160ms var(--ease-out), border-color 160ms var(--ease-out);
+}
+
+.claim-pause:hover,
+.claim-pause[aria-pressed='true'] {
+  border-color: var(--on-navy);
+  background: var(--navy-line);
+}
+
+/* Brushed steel housing around the belts. */
+.carousel {
+  display: flex;
+  flex-direction: column;
+  padding: 14px 0;
+  background: linear-gradient(180deg, #d9dde3 0%, #b9bfc8 48%, #cdd2d9 100%);
+}
+
+.carousel-island {
+  height: 18px;
+  background: linear-gradient(180deg, #8f96a1 0%, #e4e7eb 45%, #9aa1ab 100%);
+}
+
+.belt {
+  position: relative;
+  overflow: hidden;
+  padding: 16px 0 14px;
+  border-block: 5px solid #8f96a1;
+  background-color: #23272f;
+}
+
+/* Rubber slats travel with the bags, one pitch per cycle at the belt's speed. They sit on their
+   own layer one pitch wider than the belt and move by transform, so nothing repaints per frame. */
+.belt-surface {
+  position: absolute;
+  inset: 0 auto 0 calc(-1 * var(--slat-pitch));
+  width: calc(100% + 2 * var(--slat-pitch));
+  background-image: repeating-linear-gradient(
+    90deg,
+    transparent 0 calc(var(--slat-pitch) - 3px),
+    #14171c calc(var(--slat-pitch) - 3px) var(--slat-pitch)
+  );
+  animation: slats-right var(--slat-duration) linear infinite;
+  will-change: transform;
+}
+
+.belt--left .belt-surface {
+  animation-name: slats-left;
+}
+
+/* Rubber curtain flaps where bags come out and go back in. */
+.belt::before,
+.belt::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 2;
+  width: clamp(36px, 5vw, 72px);
+  background: repeating-linear-gradient(90deg, #0f1115 0 10px, #2c313a 10px 12px);
+  pointer-events: none;
+}
+
+.belt::before {
+  left: 0;
+  -webkit-mask-image: linear-gradient(90deg, var(--navy) 55%, transparent);
+  mask-image: linear-gradient(90deg, var(--navy) 55%, transparent);
+}
+
+.belt::after {
+  right: 0;
+  -webkit-mask-image: linear-gradient(270deg, var(--navy) 55%, transparent);
+  mask-image: linear-gradient(270deg, var(--navy) 55%, transparent);
+}
+
+.belt-track {
+  display: flex;
+  align-items: flex-start;
+  width: max-content;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  list-style: none;
+  animation: belt-right var(--loop-duration) linear infinite;
+}
+
+.belt--left .belt-track {
+  animation-name: belt-left;
+}
+
+.belt[data-paused] :is(.belt-surface, .belt-track),
+.carousel:hover :is(.belt-surface, .belt-track) {
+  animation-play-state: paused;
+}
+
+@keyframes belt-right {
+  from { transform: translateX(calc(-1 * var(--loop))); }
+  to { transform: translateX(0); }
+}
+
+@keyframes belt-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(-1 * var(--loop))); }
+}
+
+@keyframes slats-right {
+  from { transform: translateX(0); }
+  to { transform: translateX(var(--slat-pitch)); }
+}
+
+@keyframes slats-left {
+  from { transform: translateX(var(--slat-pitch)); }
+  to { transform: translateX(0); }
+}
+
+/* A bag: handle, a square case carrying the skill's mark, and a name tag. Spacing is a margin,
+   not a flex gap, so one copy of the bags measures exactly one loop. */
+.bag {
+  position: relative;
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  align-items: center;
+  width: 96px;
+  margin-right: 40px;
+  transform: rotate(var(--tilt));
+}
+
+.bag-handle {
+  width: 34px;
+  height: 12px;
+  margin-bottom: -2px;
+  border: 4px solid #aab1bb;
+  border-bottom: 0;
+  border-radius: 10px 10px 0 0;
+}
+
+.bag-case {
+  display: grid;
+  place-items: center;
+  width: 80px;
+  height: 80px;
+  border: 2px solid var(--ink);
+  border-radius: 12px;
+  background: var(--coupon);
+  box-shadow: 0 10px 14px -8px oklch(10% 0.05 265 / 0.7);
+}
+
+.bag--dark .bag-case {
+  border-color: #2c3c66;
+  background: var(--navy);
+}
+
+.bag-mark {
+  font-family: var(--font-carbon);
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--carbon);
+}
+
+/* The name tag hangs off the handle side, tilted against the case. */
+.bag-tag {
+  position: relative;
+  max-width: 118px;
+  margin-top: 8px;
+  padding: 4px 9px 3px 15px;
+  border-radius: 3px;
+  background: var(--stock);
+  color: var(--ink);
+  font-size: 11.5px;
+  line-height: 1.2;
+  text-align: center;
+  transform: rotate(calc(var(--tilt) * -2));
+}
+
+.bag-tag::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  width: 5px;
+  height: 5px;
+  margin-top: -2.5px;
+  border-radius: 50%;
+  background: #23272f;
+}
+
+/* --- Carbon copy slip: off duty --------------------------------------------- */
+
+.carbon-slip {
+  border-radius: var(--radius);
+  background: var(--carbon-copy);
+  color: var(--carbon);
+  box-shadow: 0 1px 3px oklch(15% 0.04 265 / 0.45), 0 18px 40px -18px oklch(10% 0.05 265 / 0.7);
+}
+
+.carbon-slip .coupon-head {
+  border-bottom: 2px dashed var(--carbon);
+}
+
+.carbon-slip .coupon-num {
+  background: var(--carbon);
+}
+
+.carbon-slip .coupon-title {
+  margin: 0;
+  color: var(--carbon);
+}
+
+.carbon-slip .coupon-tab {
+  background: var(--carbon);
+}
+
+.slip-body {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.slip-panel {
+  min-width: 0;
+  padding: clamp(18px, 2vw, 28px);
+}
+
+.slip-panel + .slip-panel {
+  border-left: 2px dashed var(--carbon);
+}
+
+.slip-title {
+  font-size: clamp(40px, 3.6vw, 56px);
+  color: var(--carbon);
+}
+
+.slip-lede {
+  margin-top: 8px;
+  font-family: var(--font-carbon);
+  font-size: 14px;
+}
+
+.channels {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin: 22px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.channel {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: var(--carbon);
+  text-decoration: none;
+}
+
+.channel img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border: 2px solid var(--carbon);
+  border-radius: 6px;
+  transition: transform 220ms var(--ease-out);
+}
+
+/* Side by side, the hobbies panel sets the row height; the covers grow into it so the playlist
+   names sit on the panel's bottom margin instead of leaving a gap under them. */
+@media (min-width: 1181px) {
+  .slip-panel {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .channels {
+    flex: 1;
+  }
+
+  .channel {
+    height: 100%;
+  }
+
+  .channel img {
+    flex: 1;
+    min-height: 0;
+    aspect-ratio: auto;
+  }
+}
+
+.channel:hover img {
+  transform: translateY(-3px) rotate(-1.5deg);
+}
+
+.channel-num {
+  margin-top: 4px;
+  font-size: 11.5px;
+}
+
+.channel-name {
+  font-family: var(--font-carbon);
+  font-size: 15px;
+  line-height: 1.3;
+}
+
+.channel:hover .channel-name {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Luggage stickers */
+
+.tags {
+  position: relative;
+  height: 290px;
+  margin-top: 18px;
+  border: 2px dashed var(--carbon);
+  border-radius: 8px;
+  overflow: hidden;
+  /* Swipes on the empty box still scroll the page; only a sticker itself captures the pointer. */
+  touch-action: pan-y;
+}
+
+.tags-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tag {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  width: 92px;
+  height: 92px;
+  padding: 8px;
+  border: 2px solid var(--carbon);
+  border-radius: 50%;
+  background: var(--coupon);
+  color: var(--carbon);
+  font-size: 13px;
+  font-stretch: 70%;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  line-height: 1.1;
+  text-align: center;
+  text-transform: uppercase;
+  touch-action: none;
+  cursor: grab;
+  user-select: none;
+  will-change: transform;
+  box-shadow: 0 2px 5px oklch(25% 0.1 290 / 0.55);
+}
+
+.tag:nth-child(3n + 1) {
+  background: var(--red);
+  border-color: var(--red-deep);
+  color: #fff;
+}
+
+.tag:nth-child(3n + 2) {
+  background: var(--navy);
+  border-color: var(--navy);
+  color: #fff;
+}
+
+.tag img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.tag--art span {
+  font-size: 11.5px;
+}
+
+/* Sized to the 30px art box so emoji and image stickers share one layout. */
+.tag .tag-emoji {
+  font-size: 26px;
+  line-height: 30px;
+  pointer-events: none;
+}
+
+.tag--dragging {
+  z-index: 2;
+  cursor: grabbing;
+  box-shadow: 0 10px 18px -6px oklch(25% 0.1 290 / 0.55);
+}
+
+/* --- Contact ------------------------------------------------------------------ */
+
+.contact-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) auto minmax(0, 1fr);
+}
+
+.contact-lines,
+.contact-form {
+  padding: clamp(20px, 2.4vw, 36px);
+}
+
+.contact-title {
+  font-size: clamp(56px, 6vw, 96px);
+}
+
+.contact-lede {
+  max-width: 44ch;
+  margin-top: 14px;
+  font-size: 17px;
+}
+
+.contact-table {
+  width: 100%;
+  margin-top: 24px;
+  border-collapse: collapse;
+}
+
+.contact-table th,
+.contact-table td {
+  padding: 11px 0;
+  border-bottom: 1px solid var(--rule);
+  text-align: left;
+}
+
+.contact-table th {
+  width: 30%;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.contact-table a {
+  font-family: var(--font-carbon);
+  font-size: 15px;
+  color: var(--carbon);
+  text-decoration-color: var(--carbon-copy-deep);
+  overflow-wrap: anywhere;
+}
+
+.contact-table a:hover {
+  text-decoration-color: var(--carbon);
+}
+
+/* Kept from the previous contact section: each detail grows slightly under the pointer. */
+.contact-table a {
+  display: inline-block;
+  transform-origin: left center;
+  transition: transform 200ms ease;
+}
+
+.contact-table a:hover {
+  transform: scale(1.02);
+}
+
+/* --- Contact zone: bare ticket stock lifted out of the navy by a scrolling arch --- */
+
+.contact-zone {
+  --arch-height: clamp(96px, 14vw, 200px);
+  --hole: var(--stock);
+  position: relative;
+  margin: var(--arch-height) calc(-1 * var(--gutter)) 0;
+  padding: clamp(8px, 2vw, 24px) var(--gutter) 0;
+  background: var(--stock);
+}
+
+/* Grows from a flat edge to a full curve; --arch (0 to 1) is set from scroll position. */
+.contact-arch {
+  position: absolute;
+  bottom: calc(100% - 1px);
+  left: -10%;
+  right: -10%;
+  height: calc(var(--arch, 0) * var(--arch-height));
+  background: var(--stock);
+  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+  pointer-events: none;
+}
+
+.contact-zone .contact {
+  border: 1px solid var(--rule);
+  box-shadow: 0 1px 3px oklch(15% 0.04 265 / 0.18), 0 24px 48px -28px oklch(15% 0.04 265 / 0.4);
+}
+
+.perf--vertical {
+  width: 0;
+  border-top: 0;
+  border-left: 2px dashed var(--rule);
+}
+
+.perf--vertical::before,
+.perf--vertical::after {
+  left: -11px;
+  right: auto;
+}
+
+.perf--vertical::before {
+  top: -10px;
+}
+
+.perf--vertical::after {
+  top: auto;
+  bottom: -10px;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.contact-form-title {
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--ink);
+  font-size: 12px;
+}
+
+.input {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.input .caps {
+  font-size: 11.5px;
+  color: var(--muted);
+}
+
+.input input,
+.input textarea {
+  width: 100%;
+  padding: 11px 12px;
+  border: 1.5px solid var(--ink);
+  border-radius: 6px;
+  background: var(--stock);
+  font-family: var(--font-carbon);
+  font-size: 15px;
+  color: var(--carbon);
+  transition: border-color 160ms var(--ease-out), background-color 160ms var(--ease-out);
+}
+
+.input textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.input input::placeholder,
+.input textarea::placeholder {
+  color: var(--muted);
+}
+
+.input input:focus,
+.input textarea:focus {
+  outline: none;
+  border-color: var(--red);
+  background: var(--coupon);
+}
+
+.input textarea[aria-invalid='true'] {
+  border-color: var(--red);
+}
+
+.input-help,
+.input-error {
+  font-size: 13.5px;
+  color: var(--muted);
+}
+
+.input-error {
+  color: var(--red-deep);
+  font-weight: 600;
+}
+
+.contact-form .btn {
+  align-self: flex-start;
+}
+
+/* --- Footer --------------------------------------------------------------------- */
+
+.site-footer {
+  padding: 32px 0 40px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.site-footer a {
+  color: var(--ink);
+}
+
+/* --- Responsive ------------------------------------------------------------------- */
+
+@media (max-width: 1180px) {
+  .passenger-body {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .passenger-body > .perf--vertical {
+    width: auto;
+    border-left: 0;
+    border-top: 2px dashed var(--rule);
+  }
+
+  .passenger-body > .perf--vertical::before {
+    top: -11px;
+    left: -10px;
+  }
+
+  .passenger-body > .perf--vertical::after {
+    top: -11px;
+    bottom: auto;
+    left: auto;
+    right: -10px;
+  }
+
+  .passenger-stub {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: auto;
+  }
+
+  .pass {
+    grid-template-columns: minmax(0, 1fr);
+    height: auto;
+  }
+
+  .pass-stub-body {
+    overflow: visible;
+  }
+
+  .pass-screen-frame {
+    flex: none;
+    height: min(760px, calc(100svh - var(--nav-height) - 84px));
+  }
+
+  .pass-stub {
+    border-right: 0;
+    border-bottom: 2px dashed var(--rule);
+  }
+
+  .pass-stub::before,
+  .pass-stub::after {
+    top: auto;
+    bottom: -11px;
+  }
+
+  .pass-stub::before {
+    left: -10px;
+    right: auto;
+  }
+
+  .pass-stub::after {
+    right: -10px;
+  }
+
+  .pass-stub .coupon-tab {
+    border-radius: 0 var(--radius) 0 0;
+  }
+
+  .pass-stub-body {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: 32px;
+  }
+
+  .pass-stub-body > * {
+    grid-column: 1;
+  }
+
+  .pass-stub-body > .pass-label,
+  .pass-stub-body > .stages,
+  .pass-stub-body > .pass-recording,
+  .pass-stub-body > .pass-stack {
+    grid-column: 2;
+  }
+
+  .pass-stub-body > .pass-label:first-of-type {
+    grid-row: 1;
+    margin-top: 0;
+  }
+
+  .pass-stub-body > .stages {
+    grid-row: 2 / span 4;
+  }
+
+
+  .pass-screen-frame {
+    border-radius: 0 0 var(--radius) var(--radius);
+  }
+
+  .slip-body {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .slip-panel + .slip-panel {
+    border-left: 0;
+    border-top: 2px dashed var(--carbon);
+  }
+}
+
+@media (max-width: 760px) {
+  .nav {
+    gap: 12px;
+  }
+
+  .nav-brand .caps {
+    display: none;
+  }
+
+  .front {
+    min-height: 0;
+  }
+
+  .passenger-id {
+    --name-size: clamp(52px, 15vw, 80px);
+  }
+
+  .passenger-stub .fare-box dd {
+    font-size: 19px;
+  }
+
+  .coupon-locator {
+    display: none;
+  }
+
+  .pass-stub-body {
+    display: flex;
+  }
+
+  .pass-stub-body > .pass-label:first-of-type {
+    margin-top: 24px;
+  }
+
+  .pass-screen-frame {
+    height: min(720px, calc(100svh - var(--nav-height) - 72px));
+  }
+
+  .pass-screen-band {
+    padding: 0 14px;
+    font-size: 12px;
+  }
+
+  .itinerary-leg {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .itinerary-meta {
+    grid-column: 2;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    text-align: left;
+  }
+
+  .contact-body {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .perf--vertical {
+    width: auto;
+    border-left: 0;
+    border-top: 2px dashed var(--rule);
+  }
+
+  .perf--vertical::before {
+    top: -11px;
+    left: -10px;
+  }
+
+  .perf--vertical::after {
+    top: -11px;
+    bottom: auto;
+    left: auto;
+    right: -10px;
+  }
+
+  .channels {
+    gap: 10px;
+  }
+}
+
+@media (max-width: 420px) {
+  .actions .btn {
+    flex: 1;
+  }
+}
+
+/* --- Section entrances ----------------------------------------------------------------
+   Hidden starting states apply only under .motion-ready, which the motion hook sets when
+   motion is allowed, so every section is visible by default. Each section enters the way
+   its paper would: the profile coupon unfolds and its stub tears in, documents rise out of
+   the wallet, the carbon copy slides out from behind, the projects heading wipes up, and
+   each boarding pass is handed over before its screen lights. */
+
+.motion-ready [data-reveal] {
+  transition:
+    opacity 700ms var(--ease-out),
+    transform 900ms var(--ease-out),
+    clip-path 1000ms var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+/* Rise: documents lift out of the wallet with a slight settle, rows following in turn. */
+.motion-ready [data-reveal='rise']:not([data-revealed]) {
+  opacity: 0;
+  transform: translateY(56px) rotate(-0.8deg);
+}
+
+.motion-ready [data-reveal='rise'] :is(.itinerary-leg, .contact-table tr) {
+  transition: opacity 500ms var(--ease-out), transform 600ms var(--ease-out);
+}
+
+.motion-ready [data-reveal='rise']:not([data-revealed]) :is(.itinerary-leg, .contact-table tr) {
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+.motion-ready [data-reveal='rise'] :is(.itinerary-leg, .contact-table tr):nth-child(1) { transition-delay: calc(var(--reveal-delay, 0ms) + 260ms); }
+.motion-ready [data-reveal='rise'] :is(.itinerary-leg, .contact-table tr):nth-child(2) { transition-delay: calc(var(--reveal-delay, 0ms) + 330ms); }
+.motion-ready [data-reveal='rise'] :is(.itinerary-leg, .contact-table tr):nth-child(3) { transition-delay: calc(var(--reveal-delay, 0ms) + 400ms); }
+.motion-ready [data-reveal='rise'] :is(.itinerary-leg, .contact-table tr):nth-child(4) { transition-delay: calc(var(--reveal-delay, 0ms) + 470ms); }
+.motion-ready [data-reveal='rise'] :is(.itinerary-leg, .contact-table tr):nth-child(5) { transition-delay: calc(var(--reveal-delay, 0ms) + 540ms); }
+.motion-ready [data-reveal='rise'] :is(.itinerary-leg, .contact-table tr):nth-child(6) { transition-delay: calc(var(--reveal-delay, 0ms) + 610ms); }
+
+/* Unfold: the profile reads first, the perforation is drawn, then the stub tears in. */
+.motion-ready [data-reveal='unfold'] :is(.passenger-main, .passenger-body > .perf--vertical, .passenger-stub .fare-box) {
+  transition: opacity 700ms var(--ease-out), transform 900ms var(--ease-out);
+}
+
+.motion-ready [data-reveal='unfold']:not([data-revealed]) .passenger-main {
+  opacity: 0;
+  transform: translateY(28px);
+}
+
+.motion-ready [data-reveal='unfold'] .passenger-body > .perf--vertical {
+  transform-origin: top;
+  transition-delay: 260ms;
+}
+
+.motion-ready [data-reveal='unfold']:not([data-revealed]) .passenger-body > .perf--vertical {
+  transform: scaleY(0);
+}
+
+.motion-ready [data-reveal='unfold']:not([data-revealed]) .passenger-stub .fare-box {
+  opacity: 0;
+  transform: translateX(40px);
+}
+
+.motion-ready [data-reveal='unfold'] .passenger-stub .fare-box:nth-child(1) { transition-delay: 420ms; }
+.motion-ready [data-reveal='unfold'] .passenger-stub .fare-box:nth-child(2) { transition-delay: 500ms; }
+.motion-ready [data-reveal='unfold'] .passenger-stub .fare-box:nth-child(3) { transition-delay: 580ms; }
+.motion-ready [data-reveal='unfold'] .passenger-stub .fare-box:nth-child(4) { transition-delay: 660ms; }
+
+/* Slip: the carbon copy is drawn out from behind the coupons, left edge first. The revealed
+   inset reaches past the box so the slip's shadow is not clipped. */
+.motion-ready [data-reveal='slip'] > .carbon-slip {
+  clip-path: inset(-60px -60px -80px -60px round var(--radius));
+  transition: transform 900ms var(--ease-out), clip-path 1100ms var(--ease-out);
+}
+
+.motion-ready [data-reveal='slip']:not([data-revealed]) > .carbon-slip {
+  clip-path: inset(0 100% 0 0 round var(--radius));
+  transform: translateX(-32px);
+}
+
+/* Wipe: the projects heading rises through its own baseline, the lede follows. */
+.motion-ready [data-reveal='wipe'] :is(.projects-title, .projects-lede) {
+  transition: opacity 700ms var(--ease-out), transform 900ms var(--ease-out), clip-path 900ms var(--ease-out);
+}
+
+.motion-ready [data-reveal='wipe'] .projects-title {
+  clip-path: inset(-10% -5% -25% -5%);
+}
+
+.motion-ready [data-reveal='wipe']:not([data-revealed]) .projects-title {
+  clip-path: inset(100% -5% -25% -5%);
+  transform: translateY(40%);
+}
+
+.motion-ready [data-reveal='wipe'] .projects-lede {
+  transition-delay: 240ms;
+}
+
+.motion-ready [data-reveal='wipe']:not([data-revealed]) .projects-lede {
+  opacity: 0;
+  transform: translateY(16px);
+}
+
+/* Board: the pass is handed over, then the app's screen comes on. */
+.motion-ready [data-reveal='board']:not([data-revealed]) {
+  opacity: 0;
+  transform: translateY(64px) scale(0.985);
+}
+
+.motion-ready [data-reveal='board'] .pass-screen {
+  transition: opacity 600ms var(--ease-out) 320ms;
+}
+
+.motion-ready [data-reveal='board']:not([data-revealed]) .pass-screen {
+  opacity: 0;
+}
+
+/* Without motion the belts stand still and scroll by hand; only the first copy of the bags shows. */
+@media (prefers-reduced-motion: reduce) {
+  .belt-surface,
+  .belt-track {
+    animation: none;
+  }
+
+  .belt {
+    overflow-x: auto;
+    scrollbar-color: #8f96a1 transparent;
+    background-image: repeating-linear-gradient(90deg, transparent 0 61px, #14171c 61px 64px);
+    background-attachment: local;
+  }
+
+  .belt-surface {
+    display: none;
+  }
+
+  .belt-track {
+    padding-inline: clamp(36px, 5vw, 72px);
+  }
+
+  .bag[data-copy] {
+    display: none;
+  }
+
+  .claim-pause {
+    display: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .claim-count {
+    margin-left: 0;
+    flex-basis: 100%;
+    order: 5;
+  }
+
+  .claim-pause {
+    margin-left: auto;
+  }
+}
+
+/* Touch screens: every control meets the 44px target. */
+@media (pointer: coarse) {
+  .nav-tab {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+  }
+
+  .claim-pause {
+    min-height: 44px;
+    padding-inline: 18px;
+  }
+
+  .contact-table a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+}

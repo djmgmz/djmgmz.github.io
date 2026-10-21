@@ -1,0 +1,378 @@
+/* ---------------------------------------------------------------------------
+   Ticket wallet. Navy wallet ground, white coupon stock, jet red for actions and
+   stamps, carbon purple for every filled-in figure. Contrast pairs checked:
+   --ink on --coupon 16.9:1, --muted on --coupon 7.8:1, --red on --coupon 5.0:1,
+   --carbon on --carbon-copy 6.2:1, --on-navy-muted on --navy 9.6:1.
+--------------------------------------------------------------------------- */
+:root {
+  color-scheme: light;
+  --navy: #0d1b3d;
+  --navy-raised: #15264f;
+  --navy-line: #2a3b66;
+  --coupon: #ffffff;
+  --stock: #f2f2f0;
+  --ink: #0d1b3d;
+  --muted: #47526b;
+  --rule: #c9cdd6;
+  --red: #d7262d;
+  --red-deep: #b01c22;
+  --carbon: #4b2e83;
+  --carbon-copy: #cfc4ee;
+  --carbon-copy-deep: #b9aae3;
+  --on-navy: #ffffff;
+  --on-navy-muted: #b9c2da;
+
+  --font-text: 'Archivo Variable', system-ui, sans-serif;
+  --font-carbon: 'B612', 'Archivo Variable', sans-serif;
+
+  --gutter: clamp(16px, 3vw, 40px);
+  --radius: 10px;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --nav-height: 60px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--nav-height) + 16px);
+  scrollbar-color: var(--navy-line) var(--navy);
+}
+
+body {
+  margin: 0;
+  background: var(--navy);
+  color: var(--ink);
+  font-family: var(--font-text);
+  font-size: 16px;
+  line-height: 1.55;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+dl,
+dd,
+figure {
+  margin: 0;
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+p,
+li,
+dd {
+  text-wrap: pretty;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-underline-offset: 0.2em;
+  text-decoration-thickness: 1px;
+}
+
+::selection {
+  background: var(--carbon-copy);
+  color: var(--ink);
+}
+
+input,
+textarea {
+  caret-color: var(--red);
+}
+
+:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 3px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 100;
+  padding: 10px 14px;
+  background: var(--red);
+  color: #fff;
+  font-weight: 700;
+  transform: translateY(-200%);
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
+/* The skip link moves focus to <main>; a ring around the whole page would only be noise. */
+#main:focus {
+  outline: none;
+}
+
+/* --- Type voices --------------------------------------------------------- */
+
+/* Coupon heads: condensed caps, the wallet's printed voice. */
+.caps {
+  font-stretch: 68%;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.display {
+  font-stretch: 62%;
+  font-weight: 850;
+  line-height: 0.88;
+  letter-spacing: -0.005em;
+  text-transform: uppercase;
+}
+
+/* Carbon numerals: every figure that was "filled in" on the coupon. */
+.carbon {
+  font-family: var(--font-carbon);
+  color: var(--carbon);
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- Buttons -------------------------------------------------------------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 46px;
+  padding: 0 22px;
+  border: 2px solid var(--ink);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--ink);
+  font-size: 15px;
+  font-stretch: 72%;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 160ms var(--ease-out), color 160ms var(--ease-out), border-color 160ms var(--ease-out);
+}
+
+.btn:hover {
+  background: var(--ink);
+  color: var(--coupon);
+}
+
+.btn--primary {
+  border-color: var(--red);
+  background: var(--red);
+  color: #fff;
+}
+
+.btn--primary:hover {
+  border-color: var(--red-deep);
+  background: var(--red-deep);
+}
+
+.btn svg {
+  flex: none;
+}
+
+/* --- Coupon --------------------------------------------------------------- */
+
+.coupon {
+  position: relative;
+  background: var(--coupon);
+  border-radius: var(--radius);
+  box-shadow: 0 1px 3px oklch(15% 0.04 265 / 0.45), 0 18px 40px -18px oklch(10% 0.05 265 / 0.7);
+}
+
+/* The head band of every coupon: a navy number block, the leg title, and a red tab. */
+.coupon-head {
+  display: flex;
+  align-items: stretch;
+  min-height: 52px;
+  border-bottom: 2px solid var(--ink);
+}
+
+.coupon-num {
+  display: grid;
+  place-items: center;
+  min-width: 56px;
+  padding: 0 12px;
+  border-radius: var(--radius) 0 0 0;
+  background: var(--ink);
+  color: #fff;
+  font-size: 26px;
+  font-stretch: 62%;
+  font-weight: 800;
+}
+
+.coupon-title {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex: 1;
+  min-width: 0;
+  padding: 0 16px;
+  font-size: 15px;
+}
+
+.coupon-tab {
+  display: grid;
+  place-items: center;
+  padding: 0 16px;
+  border-radius: 0 var(--radius) 0 0;
+  background: var(--red);
+  color: #fff;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+/* Fare boxes: ruled fields with a small caps label over a carbon value. */
+.fare-boxes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid var(--ink);
+  border-left: 1px solid var(--ink);
+}
+
+.fare-box {
+  min-width: 0;
+  padding: 12px 14px 14px;
+  border-right: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+}
+
+.fare-box dt {
+  font-size: 11.5px;
+  font-stretch: 70%;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.fare-box dd {
+  margin-top: 4px;
+  font-family: var(--font-carbon);
+  font-size: clamp(18px, 1.5vw, 22px);
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--carbon);
+  overflow-wrap: anywhere;
+}
+
+/* Perforation: a dashed tear line with punched notches at both ends. */
+.perf {
+  position: relative;
+  border-top: 2px dashed var(--rule);
+}
+
+.perf::before,
+.perf::after {
+  content: '';
+  position: absolute;
+  top: -11px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  /* A punched hole shows whatever ground the coupon lies on. */
+  background: var(--hole, var(--navy));
+}
+
+.perf::before {
+  left: -10px;
+}
+
+.perf::after {
+  right: -10px;
+}
+
+/* --- Stamp ---------------------------------------------------------------- */
+
+.stamp {
+  display: inline-block;
+  padding: 4px 14px 2px;
+  border: 3px solid var(--red);
+  border-radius: 4px;
+  color: var(--red);
+  font-size: 26px;
+  font-stretch: 62%;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  line-height: 1.1;
+  text-transform: uppercase;
+  transform: rotate(-7deg);
+  mix-blend-mode: multiply;
+}
+
+.stamp--slam {
+  animation: stamp-slam 520ms var(--ease-out) both;
+}
+
+@keyframes stamp-slam {
+  0% {
+    opacity: 0;
+    transform: rotate(-16deg) scale(2.4);
+    filter: blur(3px);
+  }
+  55% {
+    opacity: 1;
+    transform: rotate(-6deg) scale(0.94);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    transform: rotate(-7deg) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .stamp--slam {
+    animation: none;
+  }
+}
