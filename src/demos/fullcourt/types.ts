@@ -17,14 +17,6 @@ export interface Meta {
   index_size: number
 }
 
-export interface SearchSettings {
-  method: Method
-  season: string
-  useEligibility: boolean
-  statWeight: number
-  missingPolicy: MissingPolicy
-}
-
 export interface KeyStat {
   metric: string
   label: string
