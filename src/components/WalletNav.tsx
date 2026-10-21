@@ -15,7 +15,11 @@ const TABS = [
 // section just under the nav, so short sections like Education still win after a tab click.
 const REACHED_OFFSET = 96
 
-/** Tracks which section sits under the nav so its tab can flood red. */
+/**
+ * Tracks which section sits under the nav so its tab can flood red.
+ *
+ * @returns The current section's id, or null above the first section.
+ */
 function useCurrentSection(ids: string[]) {
   const [current, setCurrent] = useState<string | null>(null)
   useEffect(() => {
@@ -54,6 +58,7 @@ function useCurrentSection(ids: string[]) {
 
 const TAB_IDS = TABS.map((tab) => tab.id)
 
+/** Sticky top bar: the monogram links home and each tab jumps to a section. */
 export function WalletNav() {
   const current = useCurrentSection(TAB_IDS)
   return (

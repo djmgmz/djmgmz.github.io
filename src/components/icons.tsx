@@ -2,7 +2,7 @@ import type { SVGProps } from 'react'
 
 type IconProps = SVGProps<SVGSVGElement>
 
-/** Side-on airliner pointing right, used between route codes and on boarding actions. */
+/** Side-on airliner pointing right, used on the View projects action. */
 export function PlaneIcon(props: IconProps) {
   return (
     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false" {...props}>
@@ -11,6 +11,7 @@ export function PlaneIcon(props: IconProps) {
   )
 }
 
+/** Arrow leaving a box, marking links that open in a new tab. */
 export function ExternalIcon(props: IconProps) {
   return (
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false" {...props}>

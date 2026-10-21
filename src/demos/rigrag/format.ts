@@ -3,15 +3,18 @@ import type { BuildRequest, Part } from './types'
 
 const peso = new Intl.NumberFormat('en-PH', { style: 'currency', currency: 'PHP', maximumFractionDigits: 0 })
 
+/** Formats a price as whole pesos, or "No price yet" when it is missing. */
 export function formatPeso(value: number | string | null | undefined): string {
   const amount = value == null || value === '' ? NaN : Number(value)
   return Number.isFinite(amount) ? peso.format(amount) : 'No price yet'
 }
 
+/** Display name for a part: manufacturer, then model. */
 export function partName(part: Part): string {
   return `${part.manufacturer} ${part.model}`
 }
 
+// Spec fields arrive untyped from JSON; these narrow a value or return null.
 function n(value: unknown): number | null {
   return typeof value === 'number' ? value : null
 }

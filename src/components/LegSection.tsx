@@ -4,10 +4,13 @@ import { ExternalIcon } from './icons'
 
 interface Props {
   id: LegId
+  /** Coupon number in the wallet's running sequence. */
   number: number
-  /** Index of the pipeline stage the replay is on, or null when idle. */
+  /** Index of the stage the replay is on, the stage count once a run finishes, or null when idle. */
   stage: number | null
+  /** True once a demo run has finished, which shows the Completed stamp. */
   validated: boolean
+  /** The project's demo interface. */
   children: ReactNode
 }
 

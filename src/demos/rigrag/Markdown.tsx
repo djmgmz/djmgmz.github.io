@@ -46,6 +46,7 @@ function groups(block: string): { list: boolean; rows: string[] }[] {
   return out
 }
 
+/** Renders a recorded reply's Markdown subset as React elements. */
 export function Markdown({ source }: { source: string }) {
   const blocks = source.trim().split(/\n{2,}/)
   return (

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type PointerEvent as ReactPointerEvent } from 'react'
 import { hobbies } from '../content'
 
+// Half the 92px sticker size in site.css.
 const RADIUS = 46
 const FRICTION = 0.98
 const BOUNCE = 0.8
@@ -39,6 +40,7 @@ function seat(width: number, height: number): Tag[] {
   })
 }
 
+/** Pushes two overlapping stickers apart and trades their velocity along the line between centres. */
 function collide(a: Tag, b: Tag) {
   const dx = b.x - a.x
   const dy = b.y - a.y
@@ -95,6 +97,7 @@ export function LuggageTags() {
         const y = tag.y
         if (tag.dragging) {
           dragging = true
+          // Velocity tracks the pointer, so letting go mid-drag throws the sticker.
           tag.vx = (pointer.current.x - tag.x) * 0.3
           tag.vy = (pointer.current.y - tag.y) * 0.3
           tag.x = pointer.current.x

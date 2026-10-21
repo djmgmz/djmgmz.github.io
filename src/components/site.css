@@ -725,7 +725,7 @@
   background: #23272f;
 }
 
-/* --- Carbon copy slip: off duty --------------------------------------------- */
+/* --- Carbon copy slip: interests --------------------------------------------- */
 
 .carbon-slip {
   border-radius: var(--radius);
@@ -983,7 +983,7 @@
   text-decoration-color: var(--carbon);
 }
 
-/* Kept from the previous contact section: each detail grows slightly under the pointer. */
+/* Each detail grows slightly under the pointer. */
 .contact-table a {
   display: inline-block;
   transform-origin: left center;

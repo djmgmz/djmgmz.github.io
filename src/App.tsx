@@ -20,6 +20,7 @@ function DemoLoading() {
   return <p className="demo-loading caps">Loading the interface…</p>
 }
 
+/** The page: profile, education, skills, interests, both projects, then contact, in wallet order. */
 export default function App() {
   const [validated, setValidated] = useState<PerLeg<boolean>>({ rigrag: false, fullcourt: false })
   const [stage, setStage] = useState<PerLeg<number | null>>({ rigrag: null, fullcourt: null })

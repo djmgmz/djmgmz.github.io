@@ -13,6 +13,7 @@ const DATA = recorded as unknown as { meta: Meta; runs: RecordedRun[] }
 const META = DATA.meta
 const RUNS = DATA.runs
 const REPO = 'https://github.com/djmgmz/FullCourt'
+// Every replay lasts this long, split across stages by the recorded timings.
 const REPLAY_MS = 3000
 const STAGE_KEYS = ['parse', 'sql', 'vector_search', 'ranking', 'generation']
 
@@ -352,10 +353,16 @@ function Sidebar() {
 /* --- App --- */
 
 interface Props {
+  /** Reports replay progress in the shape `playStages` emits. */
   onStage: (index: number | null) => void
+  /** Called each time a replay finishes. */
   onComplete: () => void
 }
 
+/**
+ * FullCourt's search interface replaying recorded /api/search responses. The example questions
+ * map to recorded runs; any other question gets an off-script note instead of invented results.
+ */
 export default function FullcourtDemo({ onStage, onComplete }: Props) {
   const [question, setQuestion] = useState('')
   const [state, setState] = useState<SearchState>({ kind: 'idle' })

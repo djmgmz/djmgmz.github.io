@@ -22,6 +22,7 @@ const SUGGESTIONS = [
 ]
 
 const REPO = 'https://github.com/djmgmz/RigRAG'
+// Every replay lasts this long; the reply then states how long the recorded run took.
 const REPLAY_MS = 2600
 const STAGE_COUNT = 6
 
@@ -41,6 +42,7 @@ interface Conversation {
 let nextId = 0
 const newId = () => `rg-${++nextId}`
 
+/** Index of the recorded run for a prompt, or -1 when none was recorded. */
 function runFor(text: string): number {
   const wanted = text.trim().toLowerCase()
   return SUGGESTIONS.findIndex((s) => s.prompt.toLowerCase() === wanted)
@@ -278,10 +280,16 @@ function EmptyState({ onPick }: { onPick: (prompt: string) => void }) {
 /* --- App ------------------------------------------------------------------ */
 
 interface Props {
+  /** Reports replay progress in the shape `playStages` emits. */
   onStage: (index: number | null) => void
+  /** Called each time a replay finishes. */
   onComplete: () => void
 }
 
+/**
+ * RigRAG's chat interface replaying recorded /api/chat responses. The four suggestions map to
+ * recorded runs; any other prompt gets an off-script note instead of an invented answer.
+ */
 export default function RigragDemo({ onStage, onComplete }: Props) {
   const [conversations, setConversations] = useState<Conversation[]>([])
   const [activeId, setActiveId] = useState<string | null>(null)
@@ -292,6 +300,7 @@ export default function RigragDemo({ onStage, onComplete }: Props) {
   const scroller = useRef<HTMLDivElement>(null)
   const textarea = useRef<HTMLTextAreaElement>(null)
   const anchor = useRef<string | null>(null)
+  // Latest callbacks live in a ref, so a parent re-render never restarts a replay in flight.
   const callbacks = useRef({ onStage, onComplete })
   useLayoutEffect(() => {
     callbacks.current = { onStage, onComplete }

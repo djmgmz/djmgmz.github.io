@@ -1,7 +1,7 @@
 import { useEffect, type RefObject } from 'react'
 
-// Fraction of the remaining distance the arch closes each frame, which gives the scrubbed
-// easing the old GSAP version had (scrub: 0.5) without the library.
+// Fraction of the remaining distance the arch closes each frame, so it trails the scroll
+// slightly instead of snapping to it.
 const ARCH_EASE = 0.14
 
 function reducedMotion() {
@@ -17,6 +17,8 @@ function reducedMotion() {
  *
  * The arch grows from flat to a full curve as the contact zone rises from the bottom of the
  * viewport toward its upper third, exposed to CSS as `--arch` (0 to 1).
+ *
+ * @param archZone - Element that receives `--arch`; its position drives the curve.
  */
 export function useSectionMotion(archZone: RefObject<HTMLElement | null>) {
   useEffect(() => {

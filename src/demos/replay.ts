@@ -1,3 +1,4 @@
+// Under reduced motion the whole replay collapses to this, so results appear almost at once.
 const REDUCED_MOTION_MS = 500
 
 /**
@@ -49,6 +50,7 @@ export function playStages(
   })
 }
 
+/** True when `error` is the AbortError thrown by a stopped replay. */
 export function isAbort(error: unknown): boolean {
   return error instanceof DOMException && error.name === 'AbortError'
 }
