@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en" data-mode="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0c0e13" />
+    <meta
+      name="description"
+      content="Dominic Gomez, full-stack developer and 4th-year Computer Science student in Manila. Try RigRAG, FullCourt and WF Market Analyst right on the page."
+    />
+    <title>Dominic Gomez, full-stack developer</title>
+    <script>
+      // Applies the saved colour mode before the first paint, so the page never flashes the wrong one.
+      try {
+        const mode = localStorage.getItem('mode')
+        if (mode === 'light' || mode === 'dark') document.documentElement.dataset.mode = mode
+      } catch {}
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
