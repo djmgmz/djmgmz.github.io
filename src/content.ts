@@ -143,7 +143,7 @@ export const faq = [
 export const contacts = [
   { method: 'Email', handle: 'gomez.dominic.joel@gmail.com', href: 'mailto:gomez.dominic.joel@gmail.com' },
   { method: 'GitHub', handle: 'djmgmz', href: 'https://github.com/djmgmz' },
-  { method: 'LinkedIn', handle: 'in/djmgmz', href: 'https://www.linkedin.com/in/djmgmz' },
+  { method: 'LinkedIn', handle: 'in/dominic-joel-gomez', href: 'https://www.linkedin.com/in/dominic-joel-gomez-379220265/' },
   { method: 'Instagram', handle: '@djmgmz', href: 'https://www.instagram.com/djmgmz' },
   { method: 'Facebook', handle: 'djmgmz', href: 'https://www.facebook.com/djmgmz' },
 ]
