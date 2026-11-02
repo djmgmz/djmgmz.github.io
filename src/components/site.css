@@ -1009,3 +1009,291 @@ main:focus {
     transform: none;
   }
 }
+
+/* --- Side navigation: the page's sections as drawn icons in the left margin ---
+   Shown only where the margin can hold it; narrow screens get the bottom bar instead. */
+
+.side-nav,
+.bottom-nav {
+  display: none;
+}
+
+.side-nav {
+  position: fixed;
+  top: 50%;
+  z-index: 20;
+  transform: translateY(-50%);
+}
+
+.side-nav ol,
+.bottom-nav ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.side-nav ol {
+  position: relative;
+  display: grid;
+  gap: 14px;
+}
+
+.side-nav a {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--soft);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.side-nav a:hover,
+.side-nav a[aria-current] {
+  color: var(--ink);
+}
+
+.nav-icon {
+  flex: none;
+}
+
+.nav-icon .nav-fill {
+  fill: none;
+  transition: fill 0.25s, stroke 0.25s;
+}
+
+[aria-current] .nav-icon .nav-fill:not(.nav-fill--line) {
+  fill: currentColor;
+}
+
+/* The name beside an icon-only item, on hover and keyboard focus. */
+.side-nav--frame .side-nav-label,
+.side-nav--dock .side-nav-label {
+  position: absolute;
+  left: calc(100% + 12px);
+  padding: 5px 10px;
+  border-radius: 6px;
+  background: var(--ink);
+  color: var(--page);
+  font-size: 13.5px;
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(-4px);
+  pointer-events: none;
+  transition: opacity 0.18s, transform 0.18s var(--ease-out);
+}
+
+.side-nav--frame a:hover .side-nav-label,
+.side-nav--frame a:focus-visible .side-nav-label,
+.side-nav--dock a:hover .side-nav-label,
+.side-nav--dock a:focus-visible .side-nav-label {
+  opacity: 1;
+  transform: none;
+}
+
+/* Frame line: square stations on the page's own left rule, which fills blue down to the
+   section being read. */
+.side-nav--frame {
+  left: calc(50% - var(--col) / 2 - 1px - 19px);
+}
+
+/* The margin is on the left of the line, so the names open that way, away from the content. */
+.side-nav--frame .side-nav-label {
+  right: calc(100% + 12px);
+  left: auto;
+  transform: translateX(4px);
+}
+
+.side-nav--frame a {
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 9px;
+  background: var(--page);
+  box-shadow: inset 0 0 0 1px var(--mark-line);
+}
+
+.side-nav--frame a[aria-current] {
+  background: var(--blue);
+  color: var(--on-blue);
+  box-shadow: none;
+}
+
+.side-nav--frame .side-nav-marker {
+  position: absolute;
+  top: 19px;
+  left: 18px;
+  width: 2px;
+  height: calc(var(--active) * 52px);
+  background: var(--blue);
+  transition: height 0.45s var(--ease-out);
+}
+
+/* Contents: icon and name, read like a table of contents. */
+.side-nav--contents {
+  left: max(12px, calc(50% - var(--col) / 2 - 130px));
+}
+
+.side-nav--contents ol {
+  gap: 4px;
+}
+
+.side-nav--contents a {
+  gap: 10px;
+  padding: 3px 8px 3px 2px;
+  font-size: 13.5px;
+  font-weight: 500;
+}
+
+.side-nav--contents .nav-icon {
+  box-sizing: content-box;
+  padding: 6px;
+  border-radius: 9px;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+.side-nav--contents a[aria-current] {
+  font-weight: 600;
+}
+
+.side-nav--contents a[aria-current] .nav-icon {
+  background: var(--blue);
+  color: var(--on-blue);
+}
+
+/* Dock: a compact panel; a blue tile slides to the section being read. */
+.side-nav--dock {
+  left: calc(50% - var(--col) / 2 - 1px - 72px);
+  padding: 6px;
+  border-radius: 16px;
+  background: var(--panel);
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+
+.side-nav--dock ol {
+  gap: 6px;
+}
+
+.side-nav--dock a {
+  z-index: 1;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 11px;
+}
+
+.side-nav--dock a:hover:not([aria-current]) {
+  background: var(--panel-deep);
+}
+
+.side-nav--dock a[aria-current] {
+  color: var(--on-blue);
+}
+
+.side-nav--dock .side-nav-marker {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  width: 44px;
+  height: 44px;
+  border-radius: 11px;
+  background: var(--blue);
+  transform: translateY(calc(var(--active) * 50px));
+  transition: transform 0.45s var(--ease-out);
+}
+
+@media (min-width: 1240px) {
+  .side-nav--frame {
+    display: block;
+  }
+
+  .frame--nav-frame .top nav {
+    display: none;
+  }
+}
+
+@media (min-width: 1330px) {
+  .side-nav--dock {
+    display: block;
+  }
+
+  .frame--nav-dock .top nav {
+    display: none;
+  }
+}
+
+@media (min-width: 1440px) {
+  .side-nav--contents {
+    display: block;
+  }
+
+  .frame--nav-contents .top nav {
+    display: none;
+  }
+}
+
+/* Phones: the same icons as a bar along the bottom. */
+@media (max-width: 959px) {
+  .bottom-nav {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 20;
+    display: block;
+    padding-bottom: env(safe-area-inset-bottom);
+    background: var(--raised);
+    box-shadow: 0 -1px 0 var(--line);
+  }
+
+  .bottom-nav ol {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+  }
+
+  .bottom-nav a {
+    position: relative;
+    display: grid;
+    place-items: center;
+    height: 56px;
+    color: var(--soft);
+  }
+
+  .bottom-nav a[aria-current] {
+    color: var(--blue);
+  }
+
+  .bottom-nav a[aria-current]::after {
+    content: '';
+    position: absolute;
+    bottom: 7px;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+
+  .bottom-nav .side-nav-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  .frame {
+    padding-bottom: calc(56px + env(safe-area-inset-bottom));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .side-nav a,
+  .side-nav-label,
+  .side-nav-marker,
+  .nav-icon .nav-fill,
+  .side-nav--contents .nav-icon {
+    transition: none;
+  }
+}

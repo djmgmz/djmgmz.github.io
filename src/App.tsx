@@ -6,6 +6,8 @@ import { Header } from './components/Header'
 import { Hero } from './components/Hero'
 import { Interests } from './components/Interests'
 import { ProjectCard } from './components/ProjectCard'
+import { navVariant } from './components/navVariant'
+import { SideNav } from './components/SideNav'
 import { Skills } from './components/Skills'
 import { useReveal } from './components/useReveal'
 import { profile, type ProjectId } from './content'
@@ -23,6 +25,7 @@ function DemoLoading() {
 /** The page, in the order a recruiter reads it: who, the work, the person, then how to reach him. */
 export default function App() {
   const [stage, setStage] = useState<Record<ProjectId, number | null>>({ rigrag: null, fullcourt: null, wfm: null })
+  const [variant] = useState(navVariant)
   useReveal()
 
   const onStage = useCallback((id: ProjectId, index: number | null) => {
@@ -33,8 +36,9 @@ export default function App() {
   const onComplete = useCallback(() => {}, [])
 
   return (
-    <div className="frame">
+    <div className={`frame frame--nav-${variant}`}>
       <a className="skip-link" href="#main">Skip to content</a>
+      <SideNav variant={variant} />
       <Header />
       <main id="main" tabIndex={-1}>
         <Hero />

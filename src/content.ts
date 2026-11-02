@@ -18,6 +18,19 @@ export const profile = {
   ],
 }
 
+/** The page's sections in reading order, as the side navigation lists them. */
+export const sections = [
+  { id: 'top', label: 'Home' },
+  { id: 'about', label: 'About me' },
+  { id: 'projects', label: 'Projects' },
+  { id: 'skills', label: 'Skills' },
+  { id: 'interests', label: 'Interests' },
+  { id: 'faq', label: 'Questions' },
+  { id: 'contact', label: 'Contact' },
+] as const
+
+export type SectionId = (typeof sections)[number]['id']
+
 /** The figures in the about section. Each one must stay literally true. */
 export const numbers = [
   { value: '3', label: 'projects you can run on this page' },
